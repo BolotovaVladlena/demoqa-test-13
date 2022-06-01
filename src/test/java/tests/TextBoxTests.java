@@ -4,7 +4,10 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
@@ -20,11 +23,11 @@ public class TextBoxTests {
 
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Ivan");
-        $("[id=lastName]").setValue("Ivanov");
-        $("[id=userEmail]").setValue("ivanov@ivanov.com");
+        $("[#firstName]").setValue("Ivan");
+        $("[#lastName]").setValue("Ivanov");
+        $("[#userEmail]").setValue("ivanov@ivanov.com");
         $("#genterWrapper").$(byText("Male")).click();
-        $("[id=userNumber]").setValue("891111111");
+        $("[#userNumber]").setValue("891111111");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("May");
@@ -33,7 +36,7 @@ public class TextBoxTests {
         $(".react-datepicker__day--001:nth-child(3)").click();
         $("#subjectsInput").setValue("example");
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("#uploadPicture").uploadFile (new File("src/test/java/resources/Леди Баг.jpg"));
+        $("#uploadPicture").uploadFile (new File("src/test/resources/Леди Баг.jpg"));
         $("#currentAddress-wrapper").click();
         $("#currentAddress").val("example");
         $("#state").scrollTo().click();
