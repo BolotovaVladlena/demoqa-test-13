@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.Picture;
 import pages.components.ResultsTableComponent;
-import pages.components.checkbox;
+import pages.components.Checkbox;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -84,7 +84,7 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setHobbyCheckbox(String value) {
-        checkbox.setCheckBox(hobbyCheckbox,value);
+        Checkbox.setCheckBox(hobbyCheckbox,value);
 
         return this;
     }
