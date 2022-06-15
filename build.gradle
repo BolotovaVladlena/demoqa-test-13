@@ -12,3 +12,7 @@ dependencies {
             'com.codeborne:selenide:6.5.1'
     )
 }
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}

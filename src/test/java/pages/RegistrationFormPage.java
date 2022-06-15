@@ -7,6 +7,7 @@ import pages.components.ResultsTableComponent;
 import pages.components.Checkbox;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormPage {
@@ -54,13 +55,14 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setGenderCheckbox(String value, Object checkBoxComponent) {
+    public RegistrationFormPage setGenderCheckbox(String value) {
         checkBoxComponent(genderCheckbox,value);
 
         return this;
     }
 
     private void checkBoxComponent(SelenideElement genderCheckbox, String value) {
+        $("#genterWrapper").$(byText(value)).click();
     }
 
     public RegistrationFormPage setNumber(String value) {
@@ -71,7 +73,7 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage setBirthDate(String month, String year, String day) {
         birthDayInput.click();
-        calenderComponent.setDate(month,year,day);
+        calenderComponent.setDate(day, month, year);
 
         return this;
     }

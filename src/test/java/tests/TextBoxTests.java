@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationFormPage;
 
 import java.io.File;
 
@@ -27,7 +28,7 @@ public class TextBoxTests {
         $("[#lastName]").setValue("Ivanov");
         $("[#userEmail]").setValue("ivanov@ivanov.com");
         $("#genterWrapper").$(byText("Male")).click();
-        $("[#userNumber]").setValue("891111111");
+        $("[#userNumber]").setValue("9111234567");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("May");
@@ -36,7 +37,7 @@ public class TextBoxTests {
         $(".react-datepicker__day--001:nth-child(3)").click();
         $("#subjectsInput").setValue("example");
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("#uploadPicture").uploadFile (new File("src/test/resources/Леди Баг.jpg"));
+        $("#uploadPicture").uploadFile (new File("src/test/resources/ledibug.jpg"));
         $("#currentAddress-wrapper").click();
         $("#currentAddress").val("example");
         $("#state").scrollTo().click();
@@ -47,7 +48,37 @@ public class TextBoxTests {
 
         $(".modal-content").shouldHave(text("Thanks for submitting the form"),
                 text("ivanov@ivanov.com"), text("Male"), text("891111111"), text("example"),
-                text("1 May,1988"), text("example"), text("Music"),
-                text("Леди Баг.jpg"), text("example"), text("NCR Delhi"));
+                text("15 May,1988"), text("example"), text("Music"),
+                text("ledibug.jpg"), text("example"), text("NCR Delhi"));
+    }
+
+    @Test
+    void successfulTest2() {
+        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+
+        registrationFormPage
+                .openPage()
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setEmail("ivanov@ivanov.com")
+                .setGenderCheckbox("Male")
+                .setAddress("example")
+                .setNumber("9111111111")
+                .setBirthDate ("July", "1988", "15" )
+                .setSubject("Maths")
+                .setHobbyCheckbox("Music")
+                .uploadPicture("src/test/resources/ledibug.jpg")
+                .setAddress("example")
+                .setState("NCR")
+                .setCity("Delhi")
+                .pressSubmitButton()
+
+        ;
+
+
+        $(".modal-content").shouldHave(text("Thanks for submitting the form"),
+                text("ivanov@ivanov.com"), text("Male"), text("9111111111"), text("example"),
+                text("15 July,1988"), text("example"), text("Music"),
+                text("ledibug.jpg"), text("example"), text("NCR Delhi"));
     }
 }
