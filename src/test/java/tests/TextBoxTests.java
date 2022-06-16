@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
+import pages.components.ResultsTableComponent;
 
 import java.io.File;
 
@@ -72,6 +73,17 @@ public class TextBoxTests {
                 .setState("NCR")
                 .setCity("Delhi")
                 .pressSubmitButton()
+                .checkResult("Student Name","Ivan Ivanov")
+                .checkResult("Student Email","ivanov@ivanov.com")
+                .checkResult("Gender","Male")
+                .checkResult("Mobile","9111111111")
+                .checkResult("Date of Birth","15 July,1988")
+                .checkResult("Subjects","Maths")
+                .checkResult("Hobbies","Music")
+                .checkResult("Picture","ledibug.jpg")
+                .checkResult("Address","example")
+                .checkResult("State and City","NCR Delhi")
+
 
         ;
 
