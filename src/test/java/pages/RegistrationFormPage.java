@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationFormPage {
 
     CalendarComponent calenderComponent = new CalendarComponent();
-    ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
 
     public static final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),

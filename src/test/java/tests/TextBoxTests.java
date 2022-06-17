@@ -88,9 +88,5 @@ public class TextBoxTests {
         ;
 
 
-        $(".modal-content").shouldHave(text("Thanks for submitting the form"),
-                text("ivanov@ivanov.com"), text("Male"), text("9111111111"), text("example"),
-                text("15 July,1988"), text("example"), text("Music"),
-                text("ledibug.jpg"), text("example"), text("NCR Delhi"));
     }
 }
