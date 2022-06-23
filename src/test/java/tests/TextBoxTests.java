@@ -1,12 +1,13 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
-import pages.components.ResultsTableComponent;
 
 import java.io.File;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -83,6 +84,46 @@ public class TextBoxTests {
                 .checkResult("Picture","ledibug.jpg")
                 .checkResult("Address","example")
                 .checkResult("State and City","NCR Delhi")
+
+
+        ;
+
+
+    }
+
+    Faker faker = new Faker(new Locale("ru"));
+    String firstName = faker.address().firstName();
+    String lastName = faker.address().lastName();
+    String email = faker.internet().emailAddress();
+
+    String currentAddress = faker.witcher().quote();
+
+    String number = faker.phoneNumber().phoneNumber();
+    String subjects = faker.random().toString();
+    String address = faker.address().streetAddress();
+
+
+    @Test
+    void successfulTest3() {
+        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+
+        registrationFormPage
+                .openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGenderCheckbox("Male")
+                .setAddress(address)
+                .setNumber(String.valueOf(number))
+                .setBirthDate ("July", "1988", "15" )
+                .setSubject(subjects)
+                .setHobbyCheckbox("Music")
+                .uploadPicture("src/test/resources/ledibug.jpg")
+                .setAddress(address)
+                .setState("NCR")
+                .setCity("Delhi")
+                .pressSubmitButton()
+
 
 
         ;

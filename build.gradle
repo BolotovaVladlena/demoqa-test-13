@@ -9,7 +9,10 @@ repositories {
 dependencies {
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation (
-            'com.codeborne:selenide:6.5.1'
+            'com.codeborne:selenide:6.5.1',
+            "com.github.javafaker:javafaker:1.0.2",
+            "org.junit.jupiter:junit-jupiter:5.8.2",
+            "org.slf4j:slf4j-simple:1.7.36"
     )
 }
 
