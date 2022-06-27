@@ -105,6 +105,7 @@ public class TextBoxTests {
 
     String hobbyCheckbox = "Music";
     String picture = "src/test/resources/ledibug.jpg";
+    String picture1 = "ledibug.jpg";
     String state = "NCR";
 
     String city = "Delhi";
@@ -142,7 +143,7 @@ public class TextBoxTests {
         $(".modal-content").shouldHave(text("Thanks for submitting the form"),
                 text(firstName), text(lastName), text(email), text(male),
                 text(address), text(number), text(month), text(year), text(day),
-                text(subject), text(hobbyCheckbox), text(picture), text(address), text(state),text(city));
+                text(subject), text(hobbyCheckbox), text(picture1), text(address), text(state),text(city));
 
     }
 }
