@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
-
+    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
@@ -56,7 +56,6 @@ public class TextBoxTests {
 
     @Test
     void successfulTest2() {
-        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
         registrationFormPage
                 .openPage()
@@ -94,40 +93,56 @@ public class TextBoxTests {
     Faker faker = new Faker(new Locale("ru"));
     String firstName = faker.address().firstName();
     String lastName = faker.address().lastName();
-    String email = faker.internet().emailAddress();
 
     String currentAddress = faker.witcher().quote();
 
-    String number = faker.phoneNumber().phoneNumber();
-    String subjects = faker.random().toString();
     String address = faker.address().streetAddress();
+
+    String male = "Male";
+    String month = "July";
+    String year = "1988";
+    String day = "15";
+
+    String hobbyCheckbox = "Music";
+    String picture = "src/test/resources/ledibug.jpg";
+    String state = "NCR";
+
+    String city = "Delhi";
+
+    String subject = "Maths";
+
+    String number = "9112341567";
+
+    String email = "bbbb@yandex.ru";
+
+
 
 
     @Test
     void successfulTest3() {
-        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
         registrationFormPage
                 .openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGenderCheckbox("Male")
+                .setGenderCheckbox(male)
                 .setAddress(address)
-                .setNumber(String.valueOf(number))
-                .setBirthDate ("July", "1988", "15" )
-                .setSubject(subjects)
-                .setHobbyCheckbox("Music")
-                .uploadPicture("src/test/resources/ledibug.jpg")
+                .setNumber(number)
+                .setBirthDate (month, year, day)
+                .setSubject(subject)
+                .setHobbyCheckbox(hobbyCheckbox)
+                .uploadPicture(picture)
                 .setAddress(address)
-                .setState("NCR")
-                .setCity("Delhi")
+                .setState(state)
+                .setCity(city)
                 .pressSubmitButton()
 
-
-
         ;
-
+        $(".modal-content").shouldHave(text("Thanks for submitting the form"),
+                text(firstName), text(lastName), text(email), text(male),
+                text(address), text(number), text(month), text(year), text(day),
+                text(subject), text(hobbyCheckbox), text(picture), text(address), text(state),text(city));
 
     }
 }
