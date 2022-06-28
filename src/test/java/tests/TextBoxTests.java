@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
+import tests.TestData;
 
 import java.io.File;
 import java.util.Locale;
@@ -15,10 +16,12 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+    TestData testdata = new TestData();
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+
     }
 
     @Test
@@ -82,41 +85,10 @@ public class TextBoxTests {
                 .checkResult("Hobbies","Music")
                 .checkResult("Picture","ledibug.jpg")
                 .checkResult("Address","example")
-                .checkResult("State and City","NCR Delhi")
-
-
-        ;
+                .checkResult("State and City","NCR Delhi");
 
 
     }
-
-    Faker faker = new Faker(new Locale("ru"));
-    String firstName = faker.address().firstName();
-    String lastName = faker.address().lastName();
-
-    String currentAddress = faker.witcher().quote();
-
-    String address = faker.address().streetAddress();
-
-    String male = "Male";
-    String month = "July";
-    String year = "1988";
-    String day = "15";
-
-    String hobbyCheckbox = "Music";
-    String picture = "src/test/resources/ledibug.jpg";
-    String picture1 = "ledibug.jpg";
-    String state = "NCR";
-
-    String city = "Delhi";
-
-    String subject = "Maths";
-
-    String number = "9112341567";
-
-    String email = "bbbb@yandex.ru";
-
-
 
 
     @Test
@@ -124,26 +96,25 @@ public class TextBoxTests {
 
         registrationFormPage
                 .openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setGenderCheckbox(male)
-                .setAddress(address)
-                .setNumber(number)
-                .setBirthDate (month, year, day)
-                .setSubject(subject)
-                .setHobbyCheckbox(hobbyCheckbox)
-                .uploadPicture(picture)
-                .setAddress(address)
-                .setState(state)
-                .setCity(city)
-                .pressSubmitButton()
+                .setFirstName(testdata.firstName)
+                .setLastName(testdata.lastName)
+                .setEmail(testdata.email)
+                .setGenderCheckbox(testdata.male)
+                .setAddress(testdata.address)
+                .setNumber(testdata.number)
+                .setBirthDate(testdata.month,testdata.year,testdata.day)
+                .setSubject(testdata.subject)
+                .setHobbyCheckbox(testdata.hobbyCheckbox)
+                .uploadPicture(testdata.picture)
+                .setAddress(testdata.address)
+                .setState(testdata.state)
+                .setCity(testdata.city)
+                .pressSubmitButton();
 
-        ;
         $(".modal-content").shouldHave(text("Thanks for submitting the form"),
-                text(firstName), text(lastName), text(email), text(male),
-                text(address), text(number), text(month), text(year), text(day),
-                text(subject), text(hobbyCheckbox), text(picture1), text(address), text(state),text(city));
+                text(testdata.firstName), text(testdata.lastName), text(testdata.email), text(testdata.male),
+                text(testdata.address), text(testdata.number), text(testdata.month), text(testdata.year), text(testdata.day),
+                text(testdata.subject), text(testdata.hobbyCheckbox), text(testdata.picture1), text(testdata.address), text(testdata.state),text(testdata.city));
 
     }
 }
